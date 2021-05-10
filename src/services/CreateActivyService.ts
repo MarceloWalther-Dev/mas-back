@@ -18,10 +18,10 @@ class CreateActivyService{
             name,
             activy_date,
             course_unit_id
-        })
+        });
 
         console.log("Salvando a activy no banco de dados")
-       // await activyRepository.save(activy);
+        //await activyRepository.save(activy);
 
 
         return activy;
