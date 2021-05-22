@@ -27,8 +27,13 @@ routes.get('/user', (req, res) => {
 })
 
 routes.post('/auth', authenticateController.create);
-routes.post('/user', userController.create);
+
+routes.get('/user',authenticated, userController.show);
+routes.get('/activy',authenticated, activyController.show);
+routes.get('/courseunit', authenticated, courseUnitController.show);
+
 routes.post('/activy',authenticated ,activyController.create);
+routes.post('/user', userController.create);
 routes.post('/courseunit',authenticated ,courseUnitController.create);
 
 
