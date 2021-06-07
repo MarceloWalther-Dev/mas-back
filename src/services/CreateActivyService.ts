@@ -6,30 +6,31 @@ import {getRepository } from 'typeorm'
 interface ActivyData {
     name: string;
     activy_date: string;
-    course_unit_id: string;
+    grade: number;
+    courseUnitId: string;
 }
 
-class CreateActivyService{
-    public async execute ({name,activy_date,course_unit_id}: ActivyData){
-        
+class CreateActivyService {
+
+    async execute({name,activy_date,grade, courseUnitId}:ActivyData) {
+
         const activyRepository = getRepository(Activy);
 
         const activy = activyRepository.create({
             name,
             activy_date,
-            course_unit_id
+            grade,
+            courseUnitId
         });
 
-        console.log("Salvando a activy no banco de dados")
-        //await activyRepository.save(activy);
-
+        await activyRepository.save(activy);
 
         return activy;
+
     }
 }
 
-export {CreateActivyService}
-
+export {CreateActivyService};
 
 /* {
     "name": "marcelo",

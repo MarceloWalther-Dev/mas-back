@@ -10,32 +10,36 @@ export class CreateActivyV001_1619989415106 implements MigrationInterface {
                     {
                         name:"id",
                         type:"varchar",
-                        isPrimary: true
+                        isPrimary: true,
                     },
                     {
                         name:"name",
-                        type:"varchar"
+                        type:"varchar",
                     },
                     {
                         name:"activy_date",
-                        type:"timestamp"
+                        type:"timestamp",
                     },
                     {
-                        name: "created_at",
-                        type: "timestamp",
-                        default: "now()"
+                        name:"grade",
+                        type:"decimal",
                     },
                     {
-                        name:"course_unit_id",
-                        type:"varchar"
-                    }                    
+                        name:"courseUnitId",
+                        type:"varchar",
+                    },
+                    {
+                        name:"created_at",
+                        type:"timestamp",
+                        default:"now()",
+                    }
                 ],
-                foreignKeys:[
+                foreignKeys: [
                     {
-                        name:"Activy_CourseUnit",
-                        referencedTableName:"course_units",
-                        referencedColumnNames:["id"],
-                        columnNames:["course_unit_id"]
+                        name:'ActivyCourseUnit',
+                        referencedTableName:'course_units',
+                        referencedColumnNames: ['id'],
+                        columnNames: ['courseUnitId']
                     }
                 ]
             })
@@ -43,7 +47,6 @@ export class CreateActivyV001_1619989415106 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("activies");
     }
 
 }

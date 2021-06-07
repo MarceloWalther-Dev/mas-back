@@ -1,4 +1,4 @@
-import { Column,CreateDateColumn, Entity, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Column,CreateDateColumn, Entity, PrimaryColumn, ManyToOne, JoinTable } from 'typeorm';
 import{ v4 as uuid } from 'uuid';
 import{ CourseUnit } from './CourseUnit';
 
@@ -6,15 +6,17 @@ import{ CourseUnit } from './CourseUnit';
 class Activy{
 
 
-    constructor(id: string,name:string, activy_date:Date, course_unit_id:CourseUnit, created_at:Date){
+    constructor(id: string,name:string, activy_date:Date, course_unit_id:CourseUnit, created_at:Date, grade:number, courseUnitId:string){
         this.id = id;
 
         if(!this.id) this.id = uuid();
         
         this.name = name;
         this.activy_date = activy_date;
-        this.course_unit_id = course_unit_id;
+        this.course_unit = course_unit_id;
         this.create_at = created_at;
+        this.grade = grade;
+        this.courseUnitId = courseUnitId;
     }
 
     @PrimaryColumn()
@@ -27,10 +29,17 @@ class Activy{
     activy_date:Date;
 
     @ManyToOne(()=> CourseUnit, course_unit => course_unit.activies)
-    course_unit_id:CourseUnit;
+    @JoinTable()
+    course_unit:CourseUnit;
 
     @CreateDateColumn()
     create_at:Date;
+
+    @Column()
+    grade: number;
+
+    @Column()
+    courseUnitId:string;
 }
 
 export {Activy}
